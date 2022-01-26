@@ -54,6 +54,52 @@ ul {
 a {
   text-decoration: none;
 }
+.row.center {
+  align-items: center;
+}
+.col-1 {
+  flex: 1;
+}
+.col-2 {
+  flex: 2;
+}
+.block {
+  background-color: #e0e0e0;
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+}
+.text-right {
+  text-align: right;
+}
+
+.add-button {
+  padding-left: 14rem;
+}
+button {
+  margin: auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: hsl(9, 83%, 74%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+button.add {
+  background-color: #40c0f0;
+  width: 1.5rem;
+}
+button.remove {
+  background-color: #f04040;
+  width: 1.5rem;
+}
+button.badge {
+  background-color: #f04040;
+  border: none;
+  color: #ffffff;
+  width: 1.5rem;
+}
 
 @media screen and (min-width: 992px) {
   .section {

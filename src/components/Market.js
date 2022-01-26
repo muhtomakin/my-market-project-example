@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SearchForm from './SearchForm';
 import { useGlobalContext } from './Context'
-import Data from './Data';
 
 const Market = () => {
 
-    const {items} = useGlobalContext()
+    const {items, onAdd, cartItems, onRemove} = useGlobalContext()
 
     return (
         <main>
@@ -27,7 +26,17 @@ const Market = () => {
                                                     <h2 className='price'>${price}</h2>
                                                 </header>
                                                 <p className='item-text'>{text}</p>
-                                            </div>
+                                                <div className='buttons'>
+                                                    <div className='add-button'>
+                                                        <button onClick={() => onAdd(items)}>+</button>
+                                                    </div>
+                                                    <div className='remove-button'>
+                                                        {cartItems.filter((currentItem) => currentItem.id) === item.id ? 
+                                                            <button onClick={() => onRemove(items)}>-</button> : <></>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>                           
                                         </article>
                                     );
                                 })

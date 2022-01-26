@@ -7,6 +7,33 @@ const MyContext = ({ children }) => {
 
     const [items, setItems] = useState(Data);
     const [searchItem, setSearchItem] = useState('');
+    const [cartItems, setCartItems] = useState([]);
+
+    const onAdd = (product) => {
+      const exist = cartItems.find(item => item.id === product.id);
+      if (exist) {
+        setCartItems(cartItems.map((item) => item.id === product.id ? {...exist, amount: exist.amount+1} : item));
+      }else {
+        setCartItems([...cartItems, {product, amount: 1}]);
+      }
+    };
+
+    const onRemove = (product) => {
+      const exist = cartItems.find(item => item.id === product.id);
+      if (exist.amount === 1) {
+        setCartItems(cartItems.filter((item) => item.id !== product.id));
+      }else {
+        setCartItems(cartItems.map((item) => item.id === product.id ? {...exist, amount: exist.amount-1} : item));
+      }
+    };
+
+    const remove = (product) => {
+      const exist = cartItems.find(item => item.id === product.id);
+      setCartItems(cartItems.map((item) => item.id !== product.id));
+    }
+
+    const itemPrice = cartItems.reduce((a,c) => a+c.amount*c.price, 0);
+    const totalPrice = itemPrice;
     
     const filteredItem = useCallback((e) => {
         const keyword = e.target.value;
@@ -28,7 +55,13 @@ const MyContext = ({ children }) => {
             items,
             searchItem,
             setSearchItem,
-            filteredItem
+            filteredItem,
+            onAdd,
+            onRemove,
+            remove,
+            itemPrice,
+            totalPrice,
+            cartItems
           }}
         >
           {children}

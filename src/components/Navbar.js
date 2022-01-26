@@ -1,9 +1,11 @@
 import React from 'react';
+import { useGlobalContext } from './Context'
 import {ReactComponent as LogoIcon} from '../svgs/logo.svg'
 import {ReactComponent as BasketIcon} from '../svgs/basket.svg'
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+    const {cartItems} = useGlobalContext()
     return (
         <nav>
             <div className='nav-center'>
@@ -23,7 +25,7 @@ const Navbar = () => {
                         <Link to='/basket'>
                             <BasketIcon className='basket-icon' />
                             <div className='amount-container'>
-                                <p className='total-amount'>1</p>
+                                <p className='total-amount'>{cartItems.length}</p>
                             </div>              
                         </Link>                                              
                     </ul>                            
